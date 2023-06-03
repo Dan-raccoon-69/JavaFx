@@ -16,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javafx.scene.control.Alert;
+import modelo.Sumatoria;
 
 /**
  * FXML Controller class
@@ -57,8 +58,11 @@ public class Vista1Controller implements Initializable {
         try {
             int a = Integer.parseInt(txtnum1.getText());
             int b = Integer.parseInt(txtnum2.getText());
-            String c = (a + b) + "";
-            txtResult.setText(c);
+            
+            Sumatoria s = new Sumatoria(a, b);
+            int c = s.Sumar();
+            String resultado = (a + b) + "";
+            txtResult.setText(resultado);
         } catch (NumberFormatException e) {
             System.out.println("Solo puedes colocar Numeros!");
             Alert alert = new Alert(Alert.AlertType.ERROR);
