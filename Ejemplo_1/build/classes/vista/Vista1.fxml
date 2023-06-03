@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="360.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Vista1Controller">
+   <children>
+      <Button fx:id="btnClick" alignment="CENTER" layoutX="137.0" layoutY="30.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#click" prefHeight="54.0" prefWidth="107.0" style="-fx-background-color: orange; -fx-background-position: center; -fx-background-radius: 20;" text="Aceptar" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" underline="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="43.0" layoutY="127.0" text="Numero 1" />
+      <Label layoutX="150.0" layoutY="127.0" text="Numero 2" />
+      <Label layoutX="258.0" layoutY="127.0" text="Resultado" />
+      <TextField fx:id="txtnum1" layoutX="43.0" layoutY="166.0" prefHeight="25.0" prefWidth="57.0" />
+      <TextField fx:id="txtnum2" layoutX="150.0" layoutY="166.0" prefHeight="25.0" prefWidth="57.0" />
+      <TextField fx:id="txtResult" editable="false" layoutX="258.0" layoutY="166.0" prefHeight="25.0" prefWidth="57.0" />
+      <Label layoutX="119.0" layoutY="170.0" text="+" />
+      <Label layoutX="230.0" layoutY="170.0" text="=" />
+      <Button fx:id="btnCalcular" layoutX="68.0" layoutY="222.0" mnemonicParsing="false" onAction="#calcular" text="Calcular" />
+      <Button fx:id="btnLimipar" layoutX="239.0" layoutY="222.0" mnemonicParsing="false" onAction="#clean" text="Limpiar" />
+      <Button fx:id="btnConectar" layoutX="158.0" layoutY="278.0" mnemonicParsing="false" onAction="#conectar" text="Conectar" />
+   </children>
+</AnchorPane>
