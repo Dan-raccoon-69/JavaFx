@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="434.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ejercicio_22.VistaController">
+   <children>
+      <TextField fx:id="txtnum1" layoutX="48.0" layoutY="51.0" prefHeight="35.0" prefWidth="335.0" />
+      <TextField fx:id="txtnum2" layoutX="48.0" layoutY="101.0" prefHeight="35.0" prefWidth="335.0" />
+      <RadioButton fx:id="rbtnsumar" layoutX="138.0" layoutY="160.0" mnemonicParsing="false" text="Sumar" />
+      <RadioButton fx:id="rbtnrestar" layoutX="216.0" layoutY="160.0" mnemonicParsing="false" text="Restar" />
+      <RadioButton fx:id="rbtndividir" layoutX="138.0" layoutY="192.0" mnemonicParsing="false" text="Dividir" />
+      <RadioButton fx:id="rbtnmultiplicar" layoutX="216.0" layoutY="192.0" mnemonicParsing="false" text="Multiplicar" />
+      <Button fx:id="btnCalcular" layoutX="187.0" layoutY="234.0" mnemonicParsing="false" onAction="#calcular" text="Calcular" />
+      <TextField fx:id="txtresultado" editable="false" layoutX="50.0" layoutY="278.0" prefHeight="35.0" prefWidth="335.0" />
+   </children>
+</AnchorPane>
