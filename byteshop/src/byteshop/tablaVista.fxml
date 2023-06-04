@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="1325.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.TablaVistaController">
+   <children>
+      <TableView fx:id="tableView" layoutX="10.0" layoutY="26.0" prefHeight="504.0" prefWidth="1304.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="51.0" text="ID" />
+          <TableColumn fx:id="marcaColumn" prefWidth="101.0" text="Marca Producto" />
+            <TableColumn fx:id="fabricanteColumn" prefWidth="190.0" text="Fabricante" />
+            <TableColumn fx:id="modeloColumn" prefWidth="131.0" text="Modelo" />
+            <TableColumn fx:id="tipoProductoColumn" prefWidth="113.0" text="Tipo De Producto" />
+            <TableColumn fx:id="especificacionesColumn" prefWidth="577.0" text="Especificaciones" />
+            <TableColumn fx:id="existenciasColumn" prefWidth="71.0" text="Existencias" />
+            <TableColumn fx:id="precioColumn" prefWidth="69.0" text="Precio" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
