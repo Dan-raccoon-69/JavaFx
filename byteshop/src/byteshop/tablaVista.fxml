@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -14,9 +15,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="1325.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.TablaVistaController">
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1386.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.TablaVistaController">
    <children>
-      <TableView fx:id="tableView" layoutX="10.0" layoutY="26.0" prefHeight="504.0" prefWidth="1304.0">
+      <TableView fx:id="tableView" layoutX="41.0" layoutY="42.0" prefHeight="504.0" prefWidth="1304.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="51.0" text="ID" />
           <TableColumn fx:id="marcaColumn" prefWidth="101.0" text="Marca Producto" />
@@ -28,5 +29,13 @@
             <TableColumn fx:id="precioColumn" prefWidth="69.0" text="Precio" />
         </columns>
       </TableView>
+      <Button fx:id="btnIngresar" layoutX="606.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarRegistros" style="-fx-background-color: #01c38e;" text="Ingresar Registro" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
