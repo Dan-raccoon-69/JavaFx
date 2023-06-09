@@ -22,7 +22,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import byteshop.TablaVistaController;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  * FXML Controller class
@@ -101,10 +102,21 @@ public class agregadatosController implements Initializable {
                     alert.setTitle("Ingreso exitoso");
                     alert.setHeaderText(null);
                     alert.setContentText("Has ingresado tus datos correctamente.");
-                    alert.showAndWait();
+                    //alert.showAndWait();
+                    ButtonType result2 = alert.showAndWait().orElse(ButtonType.CANCEL);
+                    if (result2 == ButtonType.OK) {
+                        TablaVistaController loa = new TablaVistaController();
+                        loa.loadDataFromDatabase();
+                    }
                     limpiarCampos();
                 }
                 conn.close();
+            } catch (SQLIntegrityConstraintViolationException e) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("Violación de clave primaria. El id ya existe en la tabla.");
+                alert.showAndWait();
             } catch (SQLException e) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("");

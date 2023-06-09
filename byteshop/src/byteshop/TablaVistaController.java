@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,7 @@ import javafx.stage.Stage;
  * @author Daniel
  */
 public class TablaVistaController implements Initializable {
+
     @FXML
     private TableView<DataModel> tableView;
     @FXML
@@ -53,11 +55,13 @@ public class TablaVistaController implements Initializable {
     private TableColumn<DataModel, Integer> existenciasColumn;
     @FXML
     private TableColumn<DataModel, Integer> precioColumn;
-    
+
     private ObservableList<DataModel> data;
     @FXML
     private Button btnIngresar;
-    
+    @FXML
+    private Button Refresh;
+
     public TablaVistaController() {
         data = FXCollections.observableArrayList();
     }
@@ -76,22 +80,19 @@ public class TablaVistaController implements Initializable {
         existenciasColumn.setCellValueFactory(new PropertyValueFactory<>("existencias"));
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("precio"));
         // Configura las demás columnas
-        
-        tableView.setItems(data);
-        
-        loadDataFromDatabase();
-    }    
 
-    private void loadDataFromDatabase() {
+        tableView.setItems(data);
+        loadDataFromDatabase();
+    }
+
+    public void loadDataFromDatabase() {
         String url = "jdbc:mysql://localhost:3306/byteshop";
         String username = "root";
-        
-        try (Connection conn = DriverManager.getConnection(url, username, "616263646566676869");
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Productos");
-             ResultSet rs = stmt.executeQuery()) {
-            
+
+        try (Connection conn = DriverManager.getConnection(url, username, "616263646566676869"); PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Productos"); ResultSet rs = stmt.executeQuery()) {
+
             while (rs.next()) {
-                int idProducto  = rs.getInt("idProducto");
+                int idProducto = rs.getInt("idProducto");
                 String marcaProducto = rs.getString("marcaProducto");
                 String fabricante = rs.getString("fabricante");
                 String modelo = rs.getString("modelo");
@@ -99,11 +100,10 @@ public class TablaVistaController implements Initializable {
                 String especificacionesProducto = rs.getString("especificacionesProducto");
                 int existencias = rs.getInt("existencias");
                 int precio = rs.getInt("precio");
-                
-                
+
                 DataModel dataModel = new DataModel(idProducto, marcaProducto, fabricante, modelo, tipoDeProducto, especificacionesProducto, existencias, precio);
                 data.add(dataModel);
-            }    
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -115,8 +115,21 @@ public class TablaVistaController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Ingresar Datos");
         stage.setScene(new Scene(root));
-        stage.initModality(Modality.NONE); 
-        stage.initOwner(((Node)event.getSource()).getScene().getWindow()); 
-        stage.show();  
+        stage.initModality(Modality.NONE);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
+    private void Actualiza(ActionEvent event) {
+        //data.add(null);
+        data.clear();
+        loadDataFromDatabase();
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Datos Actualizados");
+        alert.setHeaderText(null);
+        alert.setContentText("Datos Actualizados");
+        alert.showAndWait();
     }
 }
