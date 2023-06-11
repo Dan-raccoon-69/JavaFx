@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -15,7 +16,7 @@
          </font></Label>
       <Button fx:id="Agrega" layoutX="122.0" layoutY="591.0" mnemonicParsing="false" onAction="#ingresarRegistros" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #01c38e;" text="Agregar" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Arial Bold" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -29,15 +30,21 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="idproducto" layoutX="199.0" layoutY="67.0" prefHeight="31.0" prefWidth="345.0">
+      <TextField fx:id="idproducto" layoutX="199.0" layoutY="67.0" onMouseClicked="#handleTextFieldClick" prefHeight="31.0" prefWidth="345.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <TextField fx:id="marca" layoutX="199.0" layoutY="123.0" prefHeight="31.0" prefWidth="345.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <Label layoutX="40.0" layoutY="128.0" prefHeight="21.0" prefWidth="66.0" text="Marca" textFill="WHITE">
          <font>
@@ -47,6 +54,9 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <Label layoutX="40.0" layoutY="188.0" prefHeight="21.0" prefWidth="83.0" text="Fabricante" textFill="WHITE">
          <font>
@@ -56,6 +66,9 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <Label layoutX="40.0" layoutY="493.0" prefHeight="21.0" prefWidth="66.0" text="Precio" textFill="WHITE">
          <font>
@@ -65,6 +78,9 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <Label layoutX="40.0" layoutY="427.0" prefHeight="21.0" prefWidth="83.0" text="Existencias" textFill="WHITE">
          <font>
@@ -74,6 +90,9 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <Label layoutX="42.0" layoutY="367.0" prefHeight="21.0" prefWidth="121.0" text="Especificaciones" textFill="WHITE">
          <font>
@@ -83,6 +102,9 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <Label layoutX="40.0" layoutY="309.0" prefHeight="21.0" prefWidth="66.0" text="Tipo" textFill="WHITE">
          <font>
@@ -92,6 +114,9 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <Label layoutX="40.0" layoutY="249.0" prefHeight="21.0" prefWidth="66.0" text="Modelo" textFill="WHITE">
          <font>

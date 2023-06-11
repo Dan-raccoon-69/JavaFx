@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package byteshop;
 
 import java.io.IOException;
@@ -61,6 +57,8 @@ public class TablaVistaController implements Initializable {
     private Button btnIngresar;
     @FXML
     private Button Refresh;
+    @FXML
+    private Button btnIngresarFPago;
 
     public TablaVistaController() {
         data = FXCollections.observableArrayList();
@@ -121,8 +119,7 @@ public class TablaVistaController implements Initializable {
     }
 
     @FXML
-    private void Actualiza(ActionEvent event) {
-        //data.add(null);
+    public void Actualiza(ActionEvent event) {
         data.clear();
         loadDataFromDatabase();
         
@@ -131,5 +128,16 @@ public class TablaVistaController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Datos Actualizados");
         alert.showAndWait();
+    }
+
+    @FXML
+    private void ingresarFpagos(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(FormaPagoVistaController.class.getResource("formaPagoVista.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Ingresar F. Pago");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.NONE);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
     }
 }

@@ -1,6 +1,6 @@
 create database ByteShop;
 use ByteShop;
-
+show tables;
 /* Datos por ingresar: Id de producto, Marca de producto, Fabricante, Modelo, Tipo de producto
 , Especificaciones del producto, Existencias, Precio. */
 
@@ -213,12 +213,11 @@ create table formasDePago (
     nombreFormaDePago varchar(30),
     PRIMARY KEY (idFormaDePago)
 );
-
 INSERT INTO formasDePago (idFormaDePago, nombreFormaDePago) VALUES
 (1, 'Tarjeta de crédito'),
 (2, 'Tarjeta de débito'),
 (3, 'Transferencia bancaria');
-
+SELECT * FROM formasDePago;
 
 /* TABLA CLIENTES ********************************************************************************/
 
@@ -237,9 +236,53 @@ create table clientes (
 );
 
 INSERT INTO clientes (idCliente, nombreCliente, idFormaDePago, correo, numeroTelefonico, idDireccion) VALUES
-(1, 'Juan Pérez', 2, 'juan@example.com', '5551234567', 1),
-(2, 'María López', 1, 'maria@example.com', '5559876543', 2),
-(3, 'Carlos Ramírez', 3, 'carlos@example.com', '5555555555', 3),
-(4, 'Laura Rodríguez', 4, 'laura@example.com', '5551112222', 4),
-(5, 'Pedro González', 5, 'pedro@example.com', '5554443333', 5);
+(1, 'Juan Carlos García Hernández', 2, 'juancarlosgarciahernandez@gmail.com', '5512345678', 5),
+(2, 'María Fernanda López Jiménez', 1, 'mflopezjimenez@yahoo.com.mx', '5598765432', 4),
+(3, 'Ricardo Alejandro Rodríguez Torres', 3, 'ricardoarodrigueztorres@hotmail.com', '5524681357', 3),
+(4, 'Ana Gabriela Morales Vargas', 3, 'agmoralesvargas@yahoo.com.mx', '5536987412', 2),
+(5, 'José Luis Mendoza Ruiz', 2, 'joseluismendozaruiz@yahoo.com', '5580231659', 1);
 
+/* TABLA VENTAS ********************************************************************************/
+
+/* Datos por ingresar: Id de venta, Id del cliente, Fecha de compra, Id forma de pago. */
+
+create table ventas (
+	idVenta int,
+    idCliente int,
+    fechaDeCompra date,
+    idFormaDePago int,
+    PRIMARY KEY (idVenta),
+    FOREIGN KEY (idCliente) REFERENCES clientes(idCliente),
+    FOREIGN KEY (idFormaDePago) REFERENCES formasDePago(idFormaDePago)
+);
+
+INSERT INTO ventas (idVenta, idCliente, fechaDeCompra, idFormaDePago) VALUES
+(1, 1, '2023-05-01', 1),
+(2, 2, '2023-05-02', 2),
+(3, 3, '2023-05-03', 1),
+(4, 4, '2023-05-04', 3),
+(5, 5, '2023-05-05', 1);
+
+/* TABLA DISTRIBUCION ********************************************************************************/
+
+/* Datos por ingresar: Id del paquete, id de la venta, nombre de la empresa de paquetería, id del cliente, Id dirección, Código de rastreo (la empresa proporciona el Código)  */
+
+create table distribucion (
+	idPaquete int,
+    idVenta int,
+    nombreDeEmpresaPaquete varchar(70),
+    idCliente int,
+    idDireccion int,
+    codigoRastreo varchar(20),
+    PRIMARY KEY (idPaquete),
+    FOREIGN KEY (idVenta) REFERENCES ventas(idVenta),
+    FOREIGN KEY (idCliente) REFERENCES clientes(idCliente),
+    FOREIGN KEY (idDireccion) REFERENCES direccion(idDireccion)
+);
+
+INSERT INTO distribucion (idPaquete, idVenta, nombreDeEmpresaPaquete, idCliente, idDireccion, codigoRastreo) VALUES
+(1, 1, 'DHL', 1, 5, 'ABC123'),
+(2, 2, 'FedEx', 2, 4, 'DEF456'),
+(3, 3, 'UPS', 3, 3, 'GHI789'),
+(4, 4, 'Estafeta', 4, 2, 'JKL012'),
+(5, 5, 'RedPack', 5, 1, 'MNO345');

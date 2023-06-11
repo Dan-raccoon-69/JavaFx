@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1468.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.TablaVistaController">
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1468.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.TablaVistaController">
    <children>
       <TableView fx:id="tableView" layoutX="41.0" layoutY="42.0" prefHeight="504.0" prefWidth="1407.0">
         <columns>
@@ -21,21 +26,29 @@
             <TableColumn fx:id="precioColumn" prefWidth="84.800048828125" text="Precio" />
         </columns>
       </TableView>
-      <Button fx:id="btnIngresar" layoutX="606.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarRegistros" style="-fx-background-color: #01c38e;" text="Ingresar Registro" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnIngresar" layoutX="596.0" layoutY="565.0" mnemonicParsing="false" onAction="#ingresarRegistros" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Ingresar Producto" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <font>
-            <Font name="Arial Bold" size="18.0" />
+            <Font name="Arial Bold" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="Refresh" layoutX="41.0" layoutY="564.0" mnemonicParsing="false" onAction="#Actualiza" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: #DAFFFE;" text="Actualiza" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="Refresh" layoutX="41.0" layoutY="564.0" mnemonicParsing="false" onAction="#Actualiza" prefHeight="33.0" prefWidth="88.0" style="-fx-background-color: #DAFFFE;" text="Actualiza" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <font>
-            <Font name="Arial Bold" size="18.0" />
+            <Font name="Arial Bold" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </Button>
+      <Button fx:id="btnIngresarFPago" layoutX="761.0" layoutY="565.0" mnemonicParsing="false" onAction="#ingresarFpagos" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #01c38e;" text="Formas De Pago" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

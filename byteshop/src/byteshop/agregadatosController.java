@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package byteshop;
 
 import java.net.URL;
@@ -24,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import byteshop.TablaVistaController;
 import java.sql.SQLIntegrityConstraintViolationException;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -102,12 +99,7 @@ public class agregadatosController implements Initializable {
                     alert.setTitle("Ingreso exitoso");
                     alert.setHeaderText(null);
                     alert.setContentText("Has ingresado tus datos correctamente.");
-                    //alert.showAndWait();
-                    ButtonType result2 = alert.showAndWait().orElse(ButtonType.CANCEL);
-                    if (result2 == ButtonType.OK) {
-                        TablaVistaController loa = new TablaVistaController();
-                        loa.loadDataFromDatabase();
-                    }
+                    alert.showAndWait();
                     limpiarCampos();
                 }
                 conn.close();
@@ -133,5 +125,10 @@ public class agregadatosController implements Initializable {
     private void cancelarIngreso(ActionEvent event) {
         Stage stage = (Stage) Cancela.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    public void handleTextFieldClick(MouseEvent event) {
+        idproducto.requestFocus();
     }
 }
