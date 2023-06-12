@@ -1,4 +1,4 @@
-package byteshop;
+package byteshop.formaPago;
 
 import java.net.URL;
 import java.sql.Connection;

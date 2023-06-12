@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="928.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.clientes.ClientesVistaController">
+   <children>
+      <TableView fx:id="tableViewClientes" layoutX="41.0" layoutY="42.0" prefHeight="257.0" prefWidth="851.0">
+        <columns>
+          <TableColumn fx:id="idCliente" prefWidth="62.0" text="ID Cliente" />
+          <TableColumn fx:id="nombreCliente" prefWidth="259.0" text="Nombre" />
+            <TableColumn fx:id="idFormaDePago" minWidth="0.0" prefWidth="66.0" text="ID F. Pago" />
+            <TableColumn fx:id="correo" prefWidth="251.0" text="Correo Electronico" />
+            <TableColumn fx:id="numeroTelefonico" minWidth="4.0" prefWidth="130.0" text="Numero de telefono" />
+            <TableColumn fx:id="idDireccion" prefWidth="81.0" text="ID Dirección" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnIngresarCliente" layoutX="403.0" layoutY="501.0" mnemonicParsing="false" onAction="#ingresarCliente" prefHeight="33.0" prefWidth="128.0" style="-fx-background-color: #01c38e;" text="Ingresar Cliente" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="RefreshCliente" layoutX="403.0" layoutY="321.0" mnemonicParsing="false" onAction="#ActualizaCliente" prefHeight="33.0" prefWidth="128.0" style="-fx-background-color: #DAFFFE;" text="Actualiza Datos" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="41.0" layoutY="384.0" prefHeight="21.0" prefWidth="65.0" style="colo: white;" text="Id Cliente" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtIdCliente" layoutX="113.0" layoutY="379.0" prefHeight="31.0" prefWidth="192.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="324.0" layoutY="384.0" prefHeight="21.0" prefWidth="65.0" style="colo: white;" text="Nombre" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNombreCliente" layoutX="389.0" layoutY="379.0" prefHeight="31.0" prefWidth="192.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="604.0" layoutY="384.0" prefHeight="21.0" prefWidth="76.0" style="colo: white;" text="Id F. Pago" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtIdFPago" layoutX="700.0" layoutY="379.0" prefHeight="31.0" prefWidth="192.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="41.0" layoutY="442.0" prefHeight="21.0" prefWidth="57.0" style="colo: white;" text="Correo" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCorreo" layoutX="113.0" layoutY="437.0" prefHeight="31.0" prefWidth="192.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="324.0" layoutY="442.0" prefHeight="21.0" prefWidth="65.0" style="colo: white;" text="Telefono" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTelefono" layoutX="389.0" layoutY="437.0" prefHeight="31.0" prefWidth="192.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="604.0" layoutY="442.0" prefHeight="21.0" prefWidth="85.0" style="colo: white;" text="Id Direccion" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtDireccion" layoutX="700.0" layoutY="437.0" prefHeight="31.0" prefWidth="192.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

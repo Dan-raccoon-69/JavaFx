@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="1044.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.direccion.DireccionController">
+   <children>
+      <TableView fx:id="tableViewDireccion" layoutX="34.0" layoutY="60.0" prefHeight="334.0" prefWidth="980.0">
+        <columns>
+          <TableColumn fx:id="idDireccion" prefWidth="51.0" text="ID" />
+          <TableColumn fx:id="Pais" prefWidth="85.0" text="Pais" />
+            <TableColumn fx:id="estadoDeResidencia" prefWidth="143.0" text="Estado Residencia" />
+            <TableColumn fx:id="alcaldia" prefWidth="151.0" text="Alcaldia" />
+            <TableColumn fx:id="codigoPostal" prefWidth="94.0" text="Codigo Postal" />
+            <TableColumn fx:id="numEnterior" prefWidth="65.0" text="Num E." />
+            <TableColumn fx:id="numInterior" prefWidth="61.0" text="Num I." />
+            <TableColumn fx:id="calle" prefWidth="188.0" text="Calle" />
+            <TableColumn fx:id="colonia" prefWidth="140.0" text="Colonia" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnIngresarDireccion" layoutX="471.0" layoutY="667.0" mnemonicParsing="false" onAction="#ingresarDirecciones" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Ingresar Dirección" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="RefreshDireccion" layoutX="473.0" layoutY="417.0" mnemonicParsing="false" onAction="#ActualizaDirecciones" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #DAFFFE;" text="Actualiza Datos" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="478.0" layoutY="24.0" prefHeight="21.0" prefWidth="137.0" style="colo: white;" text="Datos Existentes" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="432.0" layoutY="471.0" prefHeight="21.0" prefWidth="228.0" style="colo: white;" text="Ingresar Nueva Direccion" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="34.0" layoutY="516.0" prefHeight="21.0" prefWidth="84.0" style="colo: white;" text="Id Direccion" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="376.0" layoutY="516.0" prefHeight="21.0" prefWidth="42.0" style="colo: white;" text="Pais" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtpais" layoutX="452.0" layoutY="511.0" prefHeight="31.0" prefWidth="188.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="665.0" layoutY="621.0" prefHeight="21.0" prefWidth="121.0" style="colo: white;" text="E. De Residencia" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEResidencia" layoutX="793.0" layoutY="616.0" prefHeight="31.0" prefWidth="228.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtidDireccion" layoutX="149.0" layoutY="511.0" prefHeight="31.0" prefWidth="188.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="368.0" layoutY="569.0" prefHeight="21.0" prefWidth="58.0" style="colo: white;" text="Alcaldia" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCodigoPostal" layoutX="149.0" layoutY="564.0" prefHeight="31.0" prefWidth="188.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="24.0" layoutY="569.0" prefHeight="21.0" prefWidth="104.0" style="colo: white;" text="Codigo Postal" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAlcaldia" layoutX="454.0" layoutY="564.0" prefHeight="31.0" prefWidth="188.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="666.0" layoutY="569.0" prefHeight="21.0" prefWidth="66.0" style="colo: white;" text="Colonia" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtColonia" layoutX="742.0" layoutY="564.0" prefHeight="31.0" prefWidth="279.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="665.0" layoutY="516.0" prefHeight="21.0" prefWidth="42.0" style="colo: white;" text="Calle" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCalle" layoutX="725.0" layoutY="511.0" prefHeight="31.0" prefWidth="293.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="24.0" layoutY="621.0" prefHeight="21.0" prefWidth="114.0" style="colo: white;" text="Numero Interior" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNumeroInterior" layoutX="149.0" layoutY="616.0" prefHeight="31.0" prefWidth="188.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="368.0" layoutY="621.0" prefHeight="21.0" prefWidth="84.0" style="colo: white;" text="N. Exterior" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNumeroExterior" layoutX="452.0" layoutY="616.0" prefHeight="31.0" prefWidth="188.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

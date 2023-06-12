@@ -1,5 +1,9 @@
 package byteshop;
 
+import byteshop.DataModel;
+import byteshop.clientes.ClientesVistaController;
+import byteshop.formaPago.FormaPagoVistaController;
+import byteshop.direccion.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -59,6 +63,10 @@ public class TablaVistaController implements Initializable {
     private Button Refresh;
     @FXML
     private Button btnIngresarFPago;
+    @FXML
+    private Button btnDireccion;
+    @FXML
+    private Button btnClientes;
 
     public TablaVistaController() {
         data = FXCollections.observableArrayList();
@@ -135,6 +143,28 @@ public class TablaVistaController implements Initializable {
         Parent root = FXMLLoader.load(FormaPagoVistaController.class.getResource("formaPagoVista.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Ingresar F. Pago");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.NONE);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
+    private void ingresarDireccion(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(DireccionController.class.getResource("direccion.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Ingresar Dirección");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.NONE);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
+    private void ingresarClliente(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(ClientesVistaController.class.getResource("clientesVista.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Ingresar Dirección");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());

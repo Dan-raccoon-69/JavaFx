@@ -26,7 +26,7 @@
             <TableColumn fx:id="precioColumn" prefWidth="84.800048828125" text="Precio" />
         </columns>
       </TableView>
-      <Button fx:id="btnIngresar" layoutX="424.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarRegistros" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Ingresar Producto" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnIngresar" layoutX="596.0" layoutY="565.0" mnemonicParsing="false" onAction="#ingresarRegistros" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Ingresar Producto" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
@@ -42,7 +42,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnIngresarFPago" layoutX="587.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarFpagos" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #01c38e;" text="Formas De Pago" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnIngresarFPago" layoutX="761.0" layoutY="565.0" mnemonicParsing="false" onAction="#ingresarFpagos" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #01c38e;" text="Formas De Pago" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -50,15 +50,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnDireccion" layoutX="745.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDireccion" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Direcciones" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Arial Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnClientes" layoutX="883.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarClliente" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Clientes" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnDireccion" layoutX="917.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDireccion" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Direcciones" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

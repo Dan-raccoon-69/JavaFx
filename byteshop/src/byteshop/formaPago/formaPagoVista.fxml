@@ -41,7 +41,7 @@
             <Font name="Arial Bold Italic" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtIdFPago" layoutX="177.0" layoutY="414.0" onMouseClicked="#handleTextFieldClick" prefHeight="31.0" prefWidth="188.0">
+      <TextField fx:id="txtIdFPago" layoutX="177.0" layoutY="414.0" prefHeight="31.0" prefWidth="188.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -54,7 +54,7 @@
             <Font name="Arial Bold Italic" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtnombreFPago" layoutX="177.0" layoutY="456.0" onMouseClicked="#handleTextFieldClick" prefHeight="31.0" prefWidth="188.0">
+      <TextField fx:id="txtnombreFPago" layoutX="177.0" layoutY="456.0" prefHeight="31.0" prefWidth="188.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

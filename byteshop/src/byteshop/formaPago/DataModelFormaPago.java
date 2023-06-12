@@ -1,4 +1,4 @@
-package byteshop;
+package byteshop.formaPago;
 
 /**
  *
