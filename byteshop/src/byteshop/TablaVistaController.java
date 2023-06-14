@@ -2,8 +2,10 @@ package byteshop;
 
 import byteshop.DataModel;
 import byteshop.clientes.ClientesVistaController;
-import byteshop.formaPago.FormaPagoVistaController;
+import byteshop.formaPago.*;
 import byteshop.direccion.*;
+import byteshop.Ventas.*;
+import byteshop.Distribucion.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -67,6 +69,10 @@ public class TablaVistaController implements Initializable {
     private Button btnDireccion;
     @FXML
     private Button btnClientes;
+    @FXML
+    private Button btnVentas;
+    @FXML
+    private Button btnDistribucion;
 
     public TablaVistaController() {
         data = FXCollections.observableArrayList();
@@ -164,7 +170,29 @@ public class TablaVistaController implements Initializable {
     private void ingresarClliente(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(ClientesVistaController.class.getResource("clientesVista.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Ingresar Dirección");
+        stage.setTitle("Ingresar Cliente");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.NONE);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
+    private void ingresarVentas(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(VentasVistaController.class.getResource("VentasVista.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("ingresar Ventas");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.NONE);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
+    private void ingresarDistribucion(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(DistribucionController.class.getResource("Distribucion.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("ingresar Distribucion");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());

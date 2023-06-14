@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1337.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.Busqueda.BusquedaViewController">
+   <children>
+      <Button fx:id="btnBuscar" layoutX="747.0" layoutY="145.0" mnemonicParsing="false" onAction="#RealizarBusqueda" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #01c38e;" text="Buscar">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnComprar" layoutX="1116.0" layoutY="145.0" mnemonicParsing="false" onAction="#RealizarCompra" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #dafffe;" text="Comprar">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="txtbarrabusqueda" layoutX="64.0" layoutY="148.0" prefHeight="25.0" prefWidth="632.0" />
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="205.0" prefHeight="330.0" prefWidth="1307.0">
+         <columns>
+            <TableColumn fx:id="marcaBusqueda" prefWidth="128.0" text="Marca Producto" />
+            <TableColumn fx:id="FabricanteBusqueda" prefWidth="96.00001525878906" text="Fabricante" />
+            <TableColumn fx:id="ModeloBusqueda" prefWidth="128.0" text="Modelo" />
+            <TableColumn fx:id="TproductoBusqueda" prefWidth="117.0" text="Tipo De Producto" />
+            <TableColumn fx:id="EspecificacionBusqueda" prefWidth="664.0" text="Especificaciones" />
+            <TableColumn fx:id="ExistenciaBusqueda" minWidth="8.0" prefWidth="92.0" text="Existencias" />
+            <TableColumn fx:id="PrecioBusqueda" text="Precio" />
+         </columns>
+      </TableView>
+      <Label layoutX="219.0" layoutY="51.0" prefHeight="42.0" prefWidth="321.0" text="Area de Busqueda" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,7 +1,13 @@
-package byteshop.formaPago;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
+package byteshop.Ventas;
 
+import byteshop.Distribucion.DatamodelDistribucion;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,93 +26,102 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
  *
- * @author Daniel
+ * @author Migue
  */
-public class FormaPagoVistaController implements Initializable {
+public class VentasVistaController implements Initializable {
 
     @FXML
-    private TableView<DataModelFormaPago> tableViewFormaPago;
+    private TableView<DataModelVentas> TableViewventas;
     @FXML
-    private TableColumn<DataModelFormaPago, Integer> idFormaPago;
+    private TableColumn<DataModelVentas, Integer> colVenta;
     @FXML
-    private TableColumn<DataModelFormaPago, String> tipoFormaPago;
-    private ObservableList<DataModelFormaPago> data;
+    private TableColumn<DataModelVentas, Integer> colclie;
     @FXML
-    private Button btnIngresarFormaPago;
+    private TableColumn<DataModelVentas, Date> colFecha;
     @FXML
-    private Button RefreshFormaPago;
+    private TableColumn<DataModelVentas, Integer> colFormapago;
     @FXML
-    private TextField txtIdFPago;
+    private Button Actualizaventas;
     @FXML
-    private TextField txtnombreFPago;
-    
-    public FormaPagoVistaController() {
+    private Button Agregadatosventas;
+    @FXML
+    private TextField txtidventas;
+    @FXML
+    private TextField txtidFormapago;
+    @FXML
+    private TextField txtFechacompra;
+    @FXML
+    private TextField txtidcliente;
+    private ObservableList<DataModelVentas> data;
+
+    public VentasVistaController() {
         data = FXCollections.observableArrayList();
     }
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        idFormaPago.setCellValueFactory(new PropertyValueFactory<>("idFormaDePago"));
-        tipoFormaPago.setCellValueFactory(new PropertyValueFactory<>("nombreFormaDePago"));
-        tableViewFormaPago.setItems(data);
+        colVenta.setCellValueFactory(new PropertyValueFactory<>("idVenta"));
+        colclie.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaDeCompra"));
+        colFormapago.setCellValueFactory(new PropertyValueFactory<>("idFormaDePago"));
+        TableViewventas.setItems(data);
         loadDataFromDatabase();
-    }    
-    
+    }
+
     public void loadDataFromDatabase() {
         String url = "jdbc:mysql://localhost:3306/byteshop";
         String username = "root";
 
-        try (Connection conn = DriverManager.getConnection(url, username, "616263646566676869"); 
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM formasDePago"); 
-                ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = DriverManager.getConnection(url, username, "616263646566676869"); PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Ventas"); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
+                int idVenta = rs.getInt("Idventa");
+                int idCliente = rs.getInt("idCliente");
+                Date fechaDeCompra = rs.getDate("fechaDeCompra");
                 int idFormaDePago = rs.getInt("idFormaDePago");
-                String nombreFormaDePago = rs.getString("nombreFormaDePago");
-                
-                DataModelFormaPago dataModelForma = new DataModelFormaPago(idFormaDePago, nombreFormaDePago);
-                data.add(dataModelForma);
+
+                DataModelVentas DataModelVent = new DataModelVentas(idVenta, idCliente, fechaDeCompra, idFormaDePago);
+                data.add(DataModelVent);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+
     @FXML
-    private void ingresarFormaPago(ActionEvent event) {
+    private void IngresaVentas(ActionEvent event) {
+        System.out.println("Si ingresa Venta");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmación");
         alert.setHeaderText(null);
         alert.setContentText("¿Estás seguro de que quieres continuar?");
         ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
-
+       
         if (result == ButtonType.OK) {
             String url = "jdbc:mysql://localhost:3306/byteshop";
             String username = "root";
-
             try {
                 Connection conn = DriverManager.getConnection(url, username, "616263646566676869");
-                PreparedStatement stmt = conn.prepareStatement("insert into formasDePago(idFormaDePago, nombreFormaDePago) values (?,?)");
-                stmt.setString(1, txtIdFPago.getText());
-                stmt.setString(2, txtnombreFPago.getText());
-
+                PreparedStatement stmt = conn.prepareStatement("insert into ventas(idVenta, idCliente, fechaDeCompra, idFormaDePago) values (?,?,?,?)");
+                stmt.setString(1, txtidventas.getText());
+                stmt.setString(2, txtidcliente.getText());
+                stmt.setString(3, txtFechacompra.getText());
+                stmt.setString(4, txtidFormapago.getText());
+     
                 int resultado = stmt.executeUpdate();
                 if (resultado > 0) {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Ingreso exitoso");
                     alert.setHeaderText(null);
-                    alert.setContentText("Has ingresado los datos correctamente.");
+                    alert.setContentText("Has ingresado tus datos correctamente.");
                     alert.showAndWait();
-                    limpiarCampos();
+                    //limpiarCampos();
                 }
                 conn.close();
             } catch (SQLIntegrityConstraintViolationException e) {
@@ -121,26 +136,19 @@ public class FormaPagoVistaController implements Initializable {
                 alert.setTitle("Error");
                 alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
                 alert.showAndWait();
+                }
             }
-
-        }
-    }
-    
-    public void limpiarCampos() {
-        idFormaPago.setText(null);
-        tipoFormaPago.setText(null);
-    }
+        } 
+  
 
     @FXML
-    private void ActualizaFormasPago(ActionEvent event) {
+    private void ActualizaVent(ActionEvent event) {
         data.clear();
         loadDataFromDatabase();
-        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Datos Actualizados");
         alert.setHeaderText(null);
         alert.setContentText("Datos Actualizados");
         alert.showAndWait();
     }
-    
 }

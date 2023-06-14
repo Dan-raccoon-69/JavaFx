@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="419.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.FormaPagoVistaController">
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="419.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.formaPago.FormaPagoVistaController">
    <children>
       <TableView fx:id="tableViewFormaPago" layoutX="60.0" layoutY="56.0" prefHeight="247.0" prefWidth="301.0">
         <columns>
