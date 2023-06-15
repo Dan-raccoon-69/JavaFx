@@ -1,7 +1,7 @@
 package byteshop.Login;
 
 import byteshop.*;
-import byteshop.Busqueda.BusquedaViewController;
+import byteshop.Busqueda.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

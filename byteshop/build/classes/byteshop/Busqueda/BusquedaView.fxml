@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1337.0" style="-fx-background-color: #132d46;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.Busqueda.BusquedaViewController">
    <children>
-      <Button fx:id="btnBuscar" layoutX="747.0" layoutY="145.0" mnemonicParsing="false" onAction="#RealizarBusqueda" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #01c38e;" text="Buscar">
+      <Button fx:id="btnBuscar" layoutX="755.0" layoutY="138.0" mnemonicParsing="false" onAction="#RealizarBusqueda" prefHeight="37.0" prefWidth="164.0" style="-fx-background-color: #01c38e;" text="Buscar">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -24,7 +24,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnComprar" layoutX="1116.0" layoutY="145.0" mnemonicParsing="false" onAction="#RealizarCompra" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #dafffe;" text="Comprar">
+      <Button fx:id="btnComprar" layoutX="1104.0" layoutY="138.0" mnemonicParsing="false" onAction="#RealizarCompra" prefHeight="37.0" prefWidth="172.0" style="-fx-background-color: #dafffe;" text="Comprar">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -32,21 +32,29 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="txtbarrabusqueda" layoutX="64.0" layoutY="148.0" prefHeight="25.0" prefWidth="632.0" text="Escribe el nombre del producto..." />
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="205.0" prefHeight="330.0" prefWidth="1307.0">
+      <TextField fx:id="txtbarrabusqueda" layoutX="63.0" layoutY="138.0" prefHeight="32.0" prefWidth="641.0" promptText="Escribe el nombre del producto...">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <TableView fx:id="tableViewBusqueda" layoutX="14.0" layoutY="205.0" prefHeight="330.0" prefWidth="1306.0">
          <columns>
             <TableColumn fx:id="marcaBusqueda" prefWidth="128.0" text="Marca Producto" />
             <TableColumn fx:id="FabricanteBusqueda" prefWidth="96.00001525878906" text="Fabricante" />
             <TableColumn fx:id="ModeloBusqueda" prefWidth="128.0" text="Modelo" />
             <TableColumn fx:id="TproductoBusqueda" prefWidth="117.0" text="Tipo De Producto" />
-            <TableColumn fx:id="EspecificacionBusqueda" prefWidth="664.0" text="Especificaciones" />
-            <TableColumn fx:id="ExistenciaBusqueda" minWidth="8.0" prefWidth="92.0" text="Existencias" />
+            <TableColumn fx:id="EspecificacionBusqueda" prefWidth="649.9999389648438" text="Especificaciones" />
+            <TableColumn fx:id="ExistenciaBusqueda" minWidth="8.0" prefWidth="106.0" text="Existencias" />
             <TableColumn fx:id="PrecioBusqueda" text="Precio" />
          </columns>
       </TableView>
-      <Label layoutX="219.0" layoutY="51.0" prefHeight="42.0" prefWidth="321.0" text="Area de Busqueda" textFill="WHITE">
+      <Label layoutX="63.0" layoutY="58.0" prefHeight="52.0" prefWidth="407.0" text="Area de Busqueda" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="36.0" />
+            <Font name="Arial Bold Italic" size="45.0" />
+         </font>
+      </Label>
+      <Label layoutX="1046.0" layoutY="23.0" prefHeight="69.0" prefWidth="268.0" text="ByteShop" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="55.0" />
          </font>
       </Label>
    </children>

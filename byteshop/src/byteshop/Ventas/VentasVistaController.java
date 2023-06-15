@@ -130,7 +130,7 @@ public class VentasVistaController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Has ingresado tus datos correctamente.");
                     alert.showAndWait();
-                    //limpiarCampos();
+                    limpiarCampos();
                 }
                 conn.close();
             } catch (SQLException e) {

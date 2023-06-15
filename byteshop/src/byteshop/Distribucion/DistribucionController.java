@@ -28,6 +28,7 @@ import javafx.collections.ObservableList;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -209,21 +210,150 @@ public class DistribucionController implements Initializable {
 
     @FXML
     private void modificarDistribucion(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estás seguro de que quieres continuar?");
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (result == ButtonType.OK) {
+
+            try {
+                Connection conn = DriverManager.getConnection(url, usuario, contraseña);
+                PreparedStatement ps = conn.prepareStatement("update distribucion set idPaquete = ?, idVenta = ?, nombreDeEmpresaPaquete = ?, idCliente = ?, idDireccion = ?, codigoRastreo = ? where idPaquete = ?");
+                ps.setInt(7, Integer.parseInt(txtBuscarDistribucionById.getText()));
+                ps.setInt(1, Integer.parseInt(txtidpaq.getText()));
+                ps.setInt(2, Integer.parseInt(txtidvent.getText()));
+                ps.setString(3, txtpaq.getText());
+                ps.setInt(4, Integer.parseInt(txtidclie.getText()));
+                ps.setInt(5, Integer.parseInt(txtidDir.getText()));
+                ps.setString(6, txtcodrast.getText());
+
+                int resultado = ps.executeUpdate();
+                if (resultado > 0) {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ingreso exitoso");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Has Modificado tus datos correctamente.");
+                    alert.showAndWait();
+                    limpiarCampos();
+                }
+
+                conn.close();
+            } catch (SQLException e) {
+                if (e.getErrorCode() == 1452) {
+                    // Manejo específico para el error de clave externa
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setTitle("Error");
+                    alert.setContentText("NO SE ENCONTRO EL ID CLIENTE O ID FORMA DE PAGO EN LA BASE DE DATOS.");
+                    alert.showAndWait();
+                } else if (e.getErrorCode() == 1062) {
+                    // Manejo específico para el error de clave primaria duplicada
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setTitle("Error");
+                    alert.setContentText("VIOLACION DE CLAVE PRIMARIA, EL ID VENTA YA EXISTE EN LA TABLA.");
+                    alert.showAndWait();
+                } else {
+                    // Otro manejo de excepciones o re-lanzamiento
+                    System.out.println("Error desconocido: " + e.getMessage());
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setTitle("Error");
+                    alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
+                    alert.showAndWait();
+                }
+            } catch (Exception ex){
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
+                alert.showAndWait();
+            }  
+
+        }
     }
 
     @FXML
     private void eliminarDistribucion(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estás seguro de que quieres continuar?");
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (result == ButtonType.OK) {
+
+            try {
+                Connection conn = DriverManager.getConnection(url, usuario, contraseña);
+                PreparedStatement ps = conn.prepareStatement("delete from distribucion where idPaquete = ?");
+                ps.setInt(1, Integer.parseInt(txtBuscarDistribucionById.getText()));
+                int resultado = ps.executeUpdate();
+                if (resultado > 0) {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ingreso exitoso");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Has Eliminado el dato correctamente.");
+                    alert.showAndWait();
+                    limpiarCampos();
+                }
+                conn.close();
+            } catch (SQLException e ) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("ERROR CON LA BASE DE DATOS");
+                alert.showAndWait();
+            } catch (Exception e) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
+                alert.showAndWait();
+            }
+
+        }
     }
 
     @FXML
     private void limpiar(ActionEvent event) {
+        limpiarCampos();
     }
 
     @FXML
     private void cancelar(ActionEvent event) {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void buscarDistribucionById(ActionEvent event) {
+        try {
+            Connection conn = DriverManager.getConnection(url, usuario, contraseña);
+            PreparedStatement stmt = conn.prepareStatement("select * from distribucion where idPaquete = ?");
+            stmt.setString(1, txtBuscarDistribucionById.getText());
+            rs = stmt.executeQuery();
+
+            limpiarCampos();
+
+            if (rs.next()) {
+                txtidpaq.setText(String.valueOf(rs.getInt("idPaquete")));
+                txtidclie.setText(String.valueOf(rs.getString("idCliente")));
+                txtidvent.setText(String.valueOf(rs.getString("idVenta")));
+                txtidDir.setText(String.valueOf(rs.getString("idDireccion")));
+                txtpaq.setText(rs.getString("nombreDeEmpresaPaquete"));
+                txtcodrast.setText(rs.getString("codigoRastreo"));
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("Paquete no encontrado...");
+                alert.showAndWait();
+                limpiarCampos();
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al conectar a la base de datos: " + ex.getMessage());
+        }
     }
 }
