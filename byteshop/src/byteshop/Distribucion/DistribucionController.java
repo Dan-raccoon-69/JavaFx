@@ -67,6 +67,23 @@ public class DistribucionController implements Initializable {
     @FXML
     private TextField txtcodrast;
     private ObservableList<DatamodelDistribucion> data;
+    @FXML
+    private Button btnModificarDistribucion;
+    @FXML
+    private Button btnEliminarDistribucion;
+    @FXML
+    private Button btnLimpiar;
+    @FXML
+    private Button btnCancelar;
+    @FXML
+    private TextField txtBuscarDistribucionById;
+    @FXML
+    private Button btnBuscarDistribucionById;
+    // Varibles de conexion
+    public static final String url = "jdbc:mysql://localhost:3306/byteshop";
+    public static final String usuario = "root";
+    public static final String contraseña = "616263646566676869";
+    ResultSet rs;
 
     public DistribucionController() {
         data = FXCollections.observableArrayList();
@@ -86,10 +103,9 @@ public class DistribucionController implements Initializable {
     }
 
     public void loadDataFromDatabase() {
-        String url = "jdbc:mysql://localhost:3306/byteshop";
-        String username = "root";
-
-        try (Connection conn = DriverManager.getConnection(url, username, "616263646566676869"); PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Distribucion"); ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = DriverManager.getConnection(url, usuario, contraseña); 
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM distribucion"); 
+                ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 int idPaquete = rs.getInt("idPaquete");
@@ -106,6 +122,15 @@ public class DistribucionController implements Initializable {
             e.printStackTrace();
         }
     }
+    
+    public void limpiarCampos() {
+        txtidpaq.setText(null);
+        txtidclie.setText(null);
+        txtidvent.setText(null);
+        txtidDir.setText(null);
+        txtpaq.setText(null);
+        txtcodrast.setText(null);
+    }
 
     @FXML
     private void IngresaDistribucion(ActionEvent event) {
@@ -117,10 +142,8 @@ public class DistribucionController implements Initializable {
         ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
     
         if (result == ButtonType.OK) {
-            String url = "jdbc:mysql://localhost:3306/byteshop";
-            String username = "root";
         try {
-                Connection conn = DriverManager.getConnection(url, username, "616263646566676869");
+                Connection conn = DriverManager.getConnection(url, usuario, contraseña);
                 PreparedStatement stmt = conn.prepareStatement("insert into distribucion(idPaquete, idVenta, nombreDeEmpresaPaquete, idCliente, idDireccion, codigoRastreo) values (?,?,?,?,?,?)");
                 stmt.setString(1, txtidpaq.getText());
                 stmt.setString(2, txtidvent.getText());
@@ -136,22 +159,40 @@ public class DistribucionController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Has ingresado tus datos correctamente.");
                     alert.showAndWait();
-                    //limpiarCampos();
+                    limpiarCampos();
                 }
                 conn.close();
-            } catch (SQLIntegrityConstraintViolationException e) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("");
-                alert.setTitle("Error");
-                alert.setContentText("Violación de clave primaria. El id ya existe en la tabla.");
-                alert.showAndWait();
             } catch (SQLException e) {
+                if (e.getErrorCode() == 1452) {
+                    // Manejo específico para el error de clave externa
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setTitle("Error");
+                    alert.setContentText("NO SE ENCONTRO EL ID VENTA, ID CLIENTE O ID DIRECCION DE PAGO EN LA BASE DE DATOS.");
+                    alert.showAndWait();
+                } else if (e.getErrorCode() == 1062) {
+                    // Manejo específico para el error de clave primaria duplicada
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setTitle("Error");
+                    alert.setContentText("VIOLACION DE CLAVE PRIMARIA, EL ID DISTRIBUCION YA EXISTE EN LA TABLA.");
+                    alert.showAndWait();
+                } else {
+                    // Otro manejo de excepciones o re-lanzamiento
+                    System.out.println("Error desconocido: " + e.getMessage());
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setTitle("Error");
+                    alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
+                    alert.showAndWait();
+                }
+            } catch (Exception ex){
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("");
                 alert.setTitle("Error");
                 alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
                 alert.showAndWait();
-                }
+            } 
         }
    }
 
@@ -164,5 +205,25 @@ public class DistribucionController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Datos Actualizados");
         alert.showAndWait();
+    }
+
+    @FXML
+    private void modificarDistribucion(ActionEvent event) {
+    }
+
+    @FXML
+    private void eliminarDistribucion(ActionEvent event) {
+    }
+
+    @FXML
+    private void limpiar(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancelar(ActionEvent event) {
+    }
+
+    @FXML
+    private void buscarDistribucionById(ActionEvent event) {
     }
 }

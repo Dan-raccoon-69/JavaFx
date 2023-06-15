@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1468.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.TablaVistaController">
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="1468.0" style="-fx-background-color: #1a1e29;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="byteshop.TablaVistaController">
    <children>
       <TableView fx:id="tableView" layoutX="41.0" layoutY="42.0" prefHeight="504.0" prefWidth="1407.0">
         <columns>
@@ -21,7 +26,7 @@
             <TableColumn fx:id="precioColumn" prefWidth="84.800048828125" text="Precio" />
         </columns>
       </TableView>
-      <Button fx:id="btnIngresar" layoutX="369.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarRegistros" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Ingresar Producto" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnIngresar" layoutX="369.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarRegistros" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Producto" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
@@ -37,7 +42,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnIngresarFPago" layoutX="559.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarFpagos" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #01c38e;" text="Formas De Pago" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnIngresarFPago" layoutX="544.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarFpagos" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #01c38e;" text="Formas De Pago" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -45,7 +50,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnDireccion" layoutX="734.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDireccion" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Direcciones" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnDireccion" layoutX="708.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDireccion" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Direcciones" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -53,7 +58,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnClientes" layoutX="883.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarClliente" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Clientes" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnClientes" layoutX="854.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarClliente" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Clientes" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -61,7 +66,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnVentas" layoutX="1031.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarVentas" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Ventas" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnVentas" layoutX="1003.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarVentas" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Ventas" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -69,7 +74,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnDistribucion" layoutX="1179.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDistribucion" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Distribucion" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnDistribucion" layoutX="1150.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDistribucion" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Distribucion" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -75,7 +76,25 @@ public class DireccionController implements Initializable {
     private TextField txtNumeroInterior;
     @FXML
     private TextField txtNumeroExterior;
-    
+    @FXML
+    private Button btnModificarDireccion;
+    @FXML
+    private Button btnEliminarDirecciones;
+    @FXML
+    private Button btnLimpiar;
+    @FXML
+    private Button btnCancelar;
+    @FXML
+    private TextField txtBuscarId;
+    @FXML
+    private Button btnBuscarById;
+
+    // Varibles de conexion
+    public static final String url = "jdbc:mysql://localhost:3306/byteshop";
+    public static final String usuario = "root";
+    public static final String contraseña = "616263646566676869";
+    ResultSet rs;
+
     public DireccionController() {
         data = FXCollections.observableArrayList();
     }
@@ -97,15 +116,10 @@ public class DireccionController implements Initializable {
         numEnterior.setCellValueFactory(new PropertyValueFactory<>("numExterior"));
         tableViewDireccion.setItems(data);
         loadDataFromDatabase();
-    }  
-    
-    public void loadDataFromDatabase() {
-        String url = "jdbc:mysql://localhost:3306/byteshop";
-        String username = "root";
+    }
 
-        try (Connection conn = DriverManager.getConnection(url, username, "616263646566676869"); 
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM direccion"); 
-                ResultSet rs = stmt.executeQuery()) {
+    public void loadDataFromDatabase() {
+        try (Connection conn = DriverManager.getConnection(url, usuario, contraseña); PreparedStatement stmt = conn.prepareStatement("SELECT * FROM direccion"); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 int idDireccion = rs.getInt("idDireccion");
@@ -117,7 +131,7 @@ public class DireccionController implements Initializable {
                 String calle = rs.getString("calle");
                 int numInterior = rs.getInt("numInterior");
                 int numExterior = rs.getInt("numExterior");
-                
+
                 DataModelDireccion dataModeldireccion = new DataModelDireccion(idDireccion, pais, estadoDeResidencia, alcaldia, colonia, codigoPostal, calle, numInterior, numExterior);
                 data.add(dataModeldireccion);
             }
@@ -125,7 +139,7 @@ public class DireccionController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
     public void limpiarCampos() {
         txtidDireccion.setText(null);
         txtpais.setText(null);
@@ -152,7 +166,7 @@ public class DireccionController implements Initializable {
             String username = "root";
 
             try {
-                Connection conn = DriverManager.getConnection(url, username, "616263646566676869");
+                Connection conn = DriverManager.getConnection(url, usuario, contraseña);
                 PreparedStatement stmt = conn.prepareStatement("insert into direccion(idDireccion, pais, estadoDeResidencia, alcaldia, colonia, codigoPostal, calle, numInterior, numExterior) values (?,?,?,?,?,?,?,?,?)");
                 stmt.setString(1, txtidDireccion.getText());
                 stmt.setString(2, txtpais.getText());
@@ -193,12 +207,163 @@ public class DireccionController implements Initializable {
     private void ActualizaDirecciones(ActionEvent event) {
         data.clear();
         loadDataFromDatabase();
-        
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Datos Actualizados");
         alert.setHeaderText(null);
         alert.setContentText("Datos Actualizados");
         alert.showAndWait();
     }
-    
+
+    @FXML
+    private void modificarDirecciones(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estás seguro de que quieres continuar?");
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (result == ButtonType.OK) {
+
+            try {
+                Connection conn = DriverManager.getConnection(url, usuario, contraseña);
+                PreparedStatement ps = conn.prepareStatement("update direccion set idDireccion = ?, pais = ?, estadoDeResidencia = ?, alcaldia = ?, colonia = ?, codigoPostal = ?, calle = ?, numInterior = ?, numExterior = ? where idDireccion = ?");
+                ps.setInt(10, Integer.parseInt(txtBuscarId.getText()));
+                ps.setString(1, txtidDireccion.getText());
+                ps.setString(2, txtpais.getText());
+                ps.setString(3, txtEResidencia.getText());
+                ps.setString(4, txtAlcaldia.getText());
+                ps.setString(5, txtColonia.getText());
+                ps.setString(6, txtCodigoPostal.getText());
+                ps.setString(7, txtCalle.getText());
+                ps.setString(8, txtNumeroInterior.getText());
+                ps.setString(9, txtNumeroExterior.getText());
+
+                int resultado = ps.executeUpdate();
+                if (resultado > 0) {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ingreso exitoso");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Has Modificado tus datos correctamente.");
+                    alert.showAndWait();
+                    limpiarCampos();
+                }
+
+                conn.close();
+            } catch (SQLIntegrityConstraintViolationException e) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("Violación de clave primaria. El id ya existe en la tabla.");
+                alert.showAndWait();
+            } catch (SQLException e ) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("ERROR CON LA BASE DE DATOS");
+                alert.showAndWait();
+            } catch (Exception e) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
+                alert.showAndWait();
+            }
+
+        }
+    }
+
+    @FXML
+    private void eliminarDirecciones(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estás seguro de que quieres continuar?");
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (result == ButtonType.OK) {
+
+            try {
+                Connection conn = DriverManager.getConnection(url, usuario, contraseña);
+                PreparedStatement ps = conn.prepareStatement("delete from direccion where idDireccion = ?");
+                ps.setInt(1, Integer.parseInt(txtBuscarId.getText()));
+                int resultado = ps.executeUpdate();
+                if (resultado > 0) {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ingreso exitoso");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Has Eliminado el dato correctamente.");
+                    alert.showAndWait();
+                    limpiarCampos();
+                }
+                conn.close();
+            } catch (SQLException e ) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("ERROR CON LA BASE DE DATOS");
+                alert.showAndWait();
+            } catch (Exception e) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
+                alert.showAndWait();
+            }
+
+        }
+        
+    }
+
+    @FXML
+    private void limpiar(ActionEvent event) {
+        txtidDireccion.setText(null);
+        txtpais.setText(null);
+        txtCalle.setText(null);
+        txtCodigoPostal.setText(null);
+        txtAlcaldia.setText(null);
+        txtColonia.setText(null);
+        txtNumeroInterior.setText(null);
+        txtNumeroExterior.setText(null);
+        txtEResidencia.setText(null);
+    }
+
+    @FXML
+    private void cancelar(ActionEvent event) {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void buscarById() {
+        try {
+            Connection conn = DriverManager.getConnection(url, usuario, contraseña);
+            PreparedStatement stmt = conn.prepareStatement("select * from direccion where idDireccion = ?");
+            stmt.setString(1, txtBuscarId.getText());
+            rs = stmt.executeQuery();
+
+            limpiarCampos();
+            if (rs.next()) {
+                txtidDireccion.setText(String.valueOf(rs.getInt("idDireccion")));
+                txtpais.setText(rs.getString("pais"));
+                txtCalle.setText(rs.getString("calle"));
+                txtCodigoPostal.setText(rs.getString("codigoPostal"));
+                txtAlcaldia.setText(rs.getString("alcaldia"));
+                txtColonia.setText(rs.getString("colonia"));
+                txtNumeroInterior.setText(rs.getString("numInterior"));
+                txtNumeroExterior.setText(rs.getString("numExterior"));
+                txtEResidencia.setText(rs.getString("estadoDeResidencia"));
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("Direccion no encontrada...");
+                alert.showAndWait();
+                limpiarCampos();
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al conectar a la base de datos: " + ex.getMessage());
+        }
+    }
+
 }

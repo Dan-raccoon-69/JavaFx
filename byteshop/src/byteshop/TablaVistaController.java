@@ -73,6 +73,10 @@ public class TablaVistaController implements Initializable {
     private Button btnVentas;
     @FXML
     private Button btnDistribucion;
+    // Variables conexion 
+    public static final String url = "jdbc:mysql://localhost:3306/byteshop";
+    public static final String usuario = "root";
+    public static final String contraseña = "616263646566676869";
 
     public TablaVistaController() {
         data = FXCollections.observableArrayList();
@@ -98,10 +102,9 @@ public class TablaVistaController implements Initializable {
     }
 
     public void loadDataFromDatabase() {
-        String url = "jdbc:mysql://localhost:3306/byteshop";
-        String username = "root";
 
-        try (Connection conn = DriverManager.getConnection(url, username, "616263646566676869"); PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Productos"); ResultSet rs = stmt.executeQuery()) {
+
+        try (Connection conn = DriverManager.getConnection(url, usuario, contraseña); PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Productos"); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 int idProducto = rs.getInt("idProducto");
@@ -130,6 +133,7 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
+        stage.setResizable(false);
     }
 
     @FXML
@@ -142,6 +146,7 @@ public class TablaVistaController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Datos Actualizados");
         alert.showAndWait();
+        
     }
 
     @FXML
@@ -153,6 +158,7 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
+        stage.setResizable(false);
     }
 
     @FXML
@@ -164,6 +170,7 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
+        stage.setResizable(false);
     }
 
     @FXML
@@ -175,6 +182,7 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
+        stage.setResizable(false);
     }
 
     @FXML
@@ -186,6 +194,7 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
+        stage.setResizable(false);
     }
 
     @FXML
@@ -197,5 +206,6 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
+        stage.setResizable(false);
     }
 }

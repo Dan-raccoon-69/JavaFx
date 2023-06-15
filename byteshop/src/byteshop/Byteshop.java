@@ -1,10 +1,13 @@
 package byteshop;
 
+import byteshop.Login.*;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -12,15 +15,30 @@ import javafx.stage.Stage;
  * @author Daniel
  */
 public class Byteshop extends Application {
-    
+
     @Override
-     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("tablaVista.fxml"));
+    public void start(Stage primaryStage) throws IOException {
+        /*
+        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("Login.fxml"));
+        Parent root = loader.load();
+        LoginController controller = loader.getController();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("ByteShop");
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        */
+        
+        
+        FXMLLoader loader = new FXMLLoader(TablaVistaController.class.getResource("tablaVista.fxml"));
         Parent root = loader.load();
         TablaVistaController controller = loader.getController();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Productos");
+        primaryStage.setResizable(false);
         primaryStage.show();
+        
     }
 
     /**
