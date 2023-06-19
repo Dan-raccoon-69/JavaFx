@@ -1,11 +1,11 @@
 package byteshop;
 
+import byteshop.Busqueda.BusquedaViewController;
 import byteshop.DataModel;
 import byteshop.clientes.ClientesVistaController;
 import byteshop.formaPago.*;
 import byteshop.direccion.*;
 import byteshop.Ventas.*;
-import byteshop.Distribucion.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -71,12 +71,12 @@ public class TablaVistaController implements Initializable {
     private Button btnClientes;
     @FXML
     private Button btnVentas;
-    @FXML
-    private Button btnDistribucion;
     // Variables conexion 
     public static final String url = "jdbc:mysql://localhost:3306/byteshop";
     public static final String usuario = "root";
     public static final String contraseña = "616263646566676869";
+    @FXML
+    private Button btnBusca;
 
     public TablaVistaController() {
         data = FXCollections.observableArrayList();
@@ -133,7 +133,6 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
-        stage.setResizable(false);
     }
 
     @FXML
@@ -146,7 +145,6 @@ public class TablaVistaController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Datos Actualizados");
         alert.showAndWait();
-        
     }
 
     @FXML
@@ -158,7 +156,6 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
-        stage.setResizable(false);
     }
 
     @FXML
@@ -170,7 +167,6 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
-        stage.setResizable(false);
     }
 
     @FXML
@@ -182,7 +178,6 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
-        stage.setResizable(false);
     }
 
     @FXML
@@ -194,18 +189,16 @@ public class TablaVistaController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
-        stage.setResizable(false);
     }
 
     @FXML
-    private void ingresarDistribucion(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(DistribucionController.class.getResource("Distribucion.fxml"));
+    private void RealizarBusqueda(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(BusquedaViewController.class.getResource("BusquedaView.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("ingresar Distribucion");
+        stage.setTitle("Realiza Busqueda");
         stage.setScene(new Scene(root));
         stage.initModality(Modality.NONE);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
-        stage.setResizable(false);
     }
 }

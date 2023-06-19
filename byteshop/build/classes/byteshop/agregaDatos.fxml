@@ -122,12 +122,15 @@
          <font>
             <Font name="Arial Bold Italic" size="14.0" />
          </font></Label>
-      <TextField fx:id="txtidBuscar" layoutX="123.0" layoutY="44.0" prefHeight="31.0" prefWidth="232.0" promptText="Ingresa ID a buscar, modificar o eliminar">
+      <TextField fx:id="txtidBuscar" layoutX="150.0" layoutY="28.0" prefHeight="31.0" prefWidth="155.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
-      <Button fx:id="btnBuscarbyId" layoutX="370.0" layoutY="44.0" mnemonicParsing="false" onAction="#buscarById" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #01c38e;" text="Buscar" textAlignment="CENTER">
+      <Button fx:id="btnBuscarbyId" layoutX="322.0" layoutY="28.0" mnemonicParsing="false" onAction="#buscarById" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #01c38e;" text="Buscar" textAlignment="CENTER" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

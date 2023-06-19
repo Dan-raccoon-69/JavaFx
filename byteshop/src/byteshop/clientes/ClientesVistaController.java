@@ -100,7 +100,6 @@ public class ClientesVistaController implements Initializable {
     }
 
     public void loadDataFromDatabase() {
-
         try (Connection conn = DriverManager.getConnection(url, usuario, contraseña); PreparedStatement stmt = conn.prepareStatement("SELECT * FROM clientes"); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
@@ -190,7 +189,6 @@ public class ClientesVistaController implements Initializable {
                 alert.setContentText("FORMATO O LLENADO ERRONEO EN CAMPOS");
                 alert.showAndWait();
             } 
-
         }
     }
 

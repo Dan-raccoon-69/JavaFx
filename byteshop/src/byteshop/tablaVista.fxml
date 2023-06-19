@@ -26,7 +26,7 @@
             <TableColumn fx:id="precioColumn" prefWidth="84.800048828125" text="Precio" />
         </columns>
       </TableView>
-      <Button fx:id="btnIngresar" layoutX="369.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarRegistros" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Producto" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnIngresar" layoutX="522.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarRegistros" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Ingresar Producto" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
@@ -42,7 +42,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnIngresarFPago" layoutX="544.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarFpagos" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #01c38e;" text="Formas De Pago" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnIngresarFPago" layoutX="708.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarFpagos" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Formas De Pago" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -50,7 +50,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnDireccion" layoutX="708.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDireccion" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Direcciones" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnDireccion" layoutX="890.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDireccion" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Direcciones" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -58,7 +58,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnClientes" layoutX="854.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarClliente" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Clientes" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnClientes" layoutX="1075.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarClliente" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Clientes" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -66,7 +66,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnVentas" layoutX="1003.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarVentas" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Ventas" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnVentas" layoutX="1256.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarVentas" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Ventas" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -74,7 +74,7 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnDistribucion" layoutX="1150.0" layoutY="564.0" mnemonicParsing="false" onAction="#ingresarDistribucion" prefHeight="33.0" prefWidth="121.0" style="-fx-background-color: #01c38e;" text="Distribucion" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="btnBusca" layoutX="340.0" layoutY="564.0" mnemonicParsing="false" onAction="#RealizarBusqueda" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #01c38e;" text="Busqueda" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

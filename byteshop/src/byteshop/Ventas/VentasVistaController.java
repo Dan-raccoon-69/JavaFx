@@ -1,6 +1,8 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package byteshop.Ventas;
-
-import byteshop.Distribucion.DatamodelDistribucion;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -71,7 +73,7 @@ public class VentasVistaController implements Initializable {
     public static final String usuario = "root";
     public static final String contraseña = "616263646566676869";
     ResultSet rs;
-    
+
     public VentasVistaController() {
         data = FXCollections.observableArrayList();
     }
@@ -165,7 +167,8 @@ public class VentasVistaController implements Initializable {
                 alert.showAndWait();
             } 
         } 
- }
+    } 
+  
 
     @FXML
     private void ActualizaVent(ActionEvent event) {
@@ -248,6 +251,7 @@ public class VentasVistaController implements Initializable {
             }  
 
         }
+        
     }
 
     @FXML
@@ -293,7 +297,7 @@ public class VentasVistaController implements Initializable {
 
     @FXML
     private void limpiar(ActionEvent event) {
-        limpiarCampos();
+        limpiarCampos();    
     }
 
     @FXML

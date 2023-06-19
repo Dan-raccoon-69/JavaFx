@@ -1,3 +1,2 @@
-## Ecommerce, destinado a gestionar productos.
----
-![Capturas...](Img/C1.png)
+## Un Sistema de gestión de Ventas.
+* Realizado en JavaFX con MYSQL.

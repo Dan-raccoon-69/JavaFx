@@ -18,7 +18,7 @@ public class Byteshop extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        
+        /*
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("Login.fxml"));
         Parent root = loader.load();
         LoginController controller = loader.getController();
@@ -27,9 +27,8 @@ public class Byteshop extends Application {
         primaryStage.setTitle("ByteShop");
         primaryStage.setResizable(false);
         primaryStage.show();
-        
-        
-        /*
+        */
+
         FXMLLoader loader = new FXMLLoader(TablaVistaController.class.getResource("tablaVista.fxml"));
         Parent root = loader.load();
         TablaVistaController controller = loader.getController();
@@ -38,7 +37,7 @@ public class Byteshop extends Application {
         primaryStage.setTitle("Productos");
         primaryStage.setResizable(false);
         primaryStage.show();
-        */
+        
     }
 
     /**

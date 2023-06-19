@@ -1,22 +1,40 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package byteshop.Busqueda;
 
+
+
 public class DataModelBusqueda {
+
     private int idProducto;
     private String marcaProducto;
     private String fabricante;
     private String modelo;
+    private String tipoDeProducto;
     private String especificacionesProducto;
     private int existencias;
     private int precio;
 
-    public DataModelBusqueda(int idProducto, String marcaProducto, String fabricante, String modelo, String especificacionesProducto, int existencias, int precio) {
+    public DataModelBusqueda(int idProducto, String marcaProducto, String fabricante, String modelo, String tipoDeProducto, String especificacionesProducto, int existencias, int precio) {
         this.idProducto = idProducto;
         this.marcaProducto = marcaProducto;
         this.fabricante = fabricante;
         this.modelo = modelo;
+        this.tipoDeProducto = tipoDeProducto;
         this.especificacionesProducto = especificacionesProducto;
         this.existencias = existencias;
         this.precio = precio;
+    }
+
+    
+    public String getTipoDeProducto() {
+        return tipoDeProducto;
+    }
+
+    public void setTipoDeProducto(String tipoDeProducto) {
+        this.tipoDeProducto = tipoDeProducto;
     }
 
     

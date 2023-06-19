@@ -185,7 +185,7 @@ public class agregadatosController implements Initializable {
             try {
                 Connection conn = DriverManager.getConnection(url, usuario, contraseña);
                 PreparedStatement ps = conn.prepareStatement("update Productos set idProducto = ?, marcaProducto = ?, fabricante = ?, modelo = ?, tipoDeProducto = ?, especificacionesProducto = ?, existencias = ?, precio = ? where idProducto = ?");
-                ps.setInt(9, Integer.parseInt(txtidBuscar.getText()));
+                ps.setInt(9, Integer.parseInt(idproducto.getText()));
                 ps.setString(1, idproducto.getText());
                 ps.setString(2, marca.getText());
                 ps.setString(3, Fabricante.getText());
@@ -212,13 +212,13 @@ public class agregadatosController implements Initializable {
                 alert.setTitle("Error");
                 alert.setContentText("Violación de clave primaria. El id ya existe en la tabla.");
                 alert.showAndWait();
-            } catch (SQLException e ) {
+            } catch (SQLException e) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("");
                 alert.setTitle("Error");
-                alert.setContentText("ERROR CON LA BASE DE DATOS");
+                alert.setContentText("ERROR EN LA BASE DE DATOS");
                 alert.showAndWait();
-            } catch (Exception e) {
+            } catch (Exception e){
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("");
                 alert.setTitle("Error");
@@ -243,7 +243,7 @@ public class agregadatosController implements Initializable {
             try {
                 Connection conn = DriverManager.getConnection(url, usuario, contraseña);
                 PreparedStatement ps = conn.prepareStatement("delete from Productos where idProducto = ?");
-                ps.setInt(1, Integer.parseInt(txtidBuscar.getText()));
+                ps.setInt(1, Integer.parseInt(idproducto.getText()));
                 int resultado = ps.executeUpdate();
                 if (resultado > 0) {
                     alert = new Alert(Alert.AlertType.INFORMATION);
@@ -254,13 +254,13 @@ public class agregadatosController implements Initializable {
                     limpiarCampos();
                 }
                 conn.close();
-            } catch (SQLException e ) {
+            } catch (SQLIntegrityConstraintViolationException e) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("");
                 alert.setTitle("Error");
-                alert.setContentText("ERROR CON LA BASE DE DATOS");
+                alert.setContentText("Violación de clave primaria. El id ya existe en la tabla.");
                 alert.showAndWait();
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("");
                 alert.setTitle("Error");

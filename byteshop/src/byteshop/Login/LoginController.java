@@ -1,7 +1,7 @@
 package byteshop.Login;
 
 import byteshop.*;
-import byteshop.Busqueda.*;
+import byteshop.Busqueda.BusquedaViewController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -81,8 +81,5 @@ public class LoginController implements Initializable {
             alert.showAndWait();
             alert.setResizable(false);
         }
-        
-
     }
-
 }
