@@ -29,6 +29,7 @@ public class Producto {
         this.precio = precio;
         this.existencias = existencias;
     }
+    
 
     public int getExistencias() {
         return existencias;
@@ -78,9 +79,5 @@ public class Producto {
 
     public void setPrecio(int precio) {
         this.precio = precio;
-    }
-
-    
-
-    
+    }   
 }

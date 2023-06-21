@@ -28,7 +28,7 @@ public class Byteshop extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         */
-
+        
         FXMLLoader loader = new FXMLLoader(TablaVistaController.class.getResource("tablaVista.fxml"));
         Parent root = loader.load();
         TablaVistaController controller = loader.getController();

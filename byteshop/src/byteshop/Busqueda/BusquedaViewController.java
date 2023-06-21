@@ -4,6 +4,7 @@
  */
 package byteshop.Busqueda;
 
+import byteshop.Ticket.TicketViewController;
 import byteshop.Ventas.DataModelVentas;
 import byteshop.direccion.DireccionController;
 import java.io.IOException;
@@ -16,8 +17,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -48,6 +52,8 @@ import javax.swing.JOptionPane;
  */
 public class BusquedaViewController implements Initializable {
 
+    public static int total;
+
     @FXML
     private Button btnBuscar;
     @FXML
@@ -70,11 +76,12 @@ public class BusquedaViewController implements Initializable {
     private TableColumn<DataModelBusqueda, Integer> PrecioBusqueda;
     @FXML
     private TableView<DataModelBusqueda> tableViewBusqueda;
+
     private ObservableList<DataModelBusqueda> data;
     private ObservableList<Producto> data2;
 
     private DataModelBusqueda productoSeleccionado;
-
+    private List<Producto> carrito = new ArrayList<>();
     private List<Producto> listaProductos = new ArrayList<>();
 
     // Varibles de conexion
@@ -102,6 +109,8 @@ public class BusquedaViewController implements Initializable {
     private Button btnComprar11;
     @FXML
     private Button Refresh;
+    private Object tblTicket;
+    private Object tableViewTicket;
 
     /**
      *
@@ -129,7 +138,6 @@ public class BusquedaViewController implements Initializable {
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("precio"));
         tableViewCarrito.setItems(data2);
 
-        //tableViewCarrito.setItems(FXCollections.observableArrayList(listaProductos));
     }
 
     public void loadDataFromDatabase() {
@@ -204,6 +212,7 @@ public class BusquedaViewController implements Initializable {
 
     @FXML
     public void RealizarCompra(ActionEvent event) {
+
         try {
             int existenciasProducto = 0;
             DataModelBusqueda DataModelbuscar = tableViewBusqueda.getSelectionModel().getSelectedItem();
@@ -297,61 +306,82 @@ public class BusquedaViewController implements Initializable {
     }
 
     @FXML
-    private void generarTicket(ActionEvent event) {
-        try {
-           if(!data2.isEmpty()){
-            for (Producto elemento : data2) {
-                int idProducto = elemento.getIdProducto();
-                int existencias = elemento.getExistencias();
-                existencias--;
-                try {
-                    Connection conn = DriverManager.getConnection(url, usuario, contraseña);
-                    PreparedStatement ps = conn.prepareStatement("update Productos set existencias = ? where idProducto = ?");
-                    ps.setInt(2, idProducto);
-                    ps.setInt(1, existencias);
-
-                    int resultado = ps.executeUpdate();
-                    if (resultado > 0) {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Ingreso exitoso");
-                        alert.setHeaderText(null);
-                        alert.setContentText("COMPRA EXITOSA");
-                        alert.showAndWait();
-                        data2.clear();
-                        txtTotal.setText(null);
-                    }
-
-                    conn.close();
-                }catch (Exception ex) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("");
-                    alert.setTitle("Error");
-                    alert.setContentText("ERROR DESCONOCIDO" + ex);
-                    alert.showAndWait();
-                }
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("");
-            alert.setTitle("Error");
-            alert.setContentText("NO HAY PRODUCTOS EN EL CARRITO");
-            alert.showAndWait();
-        } 
-        } catch (Exception e) {
-        }
-        
-
-    }
-
-    @FXML
     private void Actualiza(ActionEvent event) {
         data.clear();
         loadDataFromDatabase();
-
+        /*
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Datos Actualizados");
         alert.setHeaderText(null);
         alert.setContentText("Datos Actualizados");
         alert.showAndWait();
+         */
+    }
+    
+    public int obtenerIdCliente() {
+        Random random = new Random();
+        int numero = random.nextInt(5) + 1;
+        return numero;
+    }
+
+    @FXML
+    private void genTicket(ActionEvent event) {
+        TicketViewController contarid = new TicketViewController();
+        int resultado = 0;
+        try {
+            if (!data2.isEmpty()) {
+                Iterator<Producto> iterator = data2.iterator();
+                while (iterator.hasNext()) {
+                    Producto producto = iterator.next();
+                    int idProducto = producto.getIdProducto();
+                    int existencias = producto.getExistencias();
+                    existencias--;
+                    try {
+                        Connection conn = DriverManager.getConnection(url, usuario, contraseña);
+                        PreparedStatement ps = conn.prepareStatement("update Productos set existencias = ? where idProducto = ?");
+                        ps.setInt(2, idProducto);
+                        ps.setInt(1, existencias);
+                        resultado = ps.executeUpdate();
+                        conn.close();
+                    } catch (Exception ex) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText("");
+                        alert.setTitle("Error");
+                        alert.setContentText("ERROR DESCONOCIDO " + ex);
+                        alert.showAndWait();
+                    }
+                } // while - for
+                if (resultado > 0) {
+                    Actualiza(event);
+                    // Crear una instancia del controlador del ticket
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/byteshop/Ticket/TicketView.fxml"));
+                    Parent root = loader.load();
+                    TicketViewController ticketController = loader.getController();
+                    // Pasar los datos del carrito al controlador del ticket
+                    ticketController.actualizarTicket(data2);
+                    // Calcular el total y pasarlo al controlador del ticket
+                    int total = 0;
+                    for (Producto elemento : data2) {
+                        total += elemento.getPrecio();
+                    }
+                    ticketController.setTotal("$ " + total);
+
+                    // Mostrar la ventana del ticket
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
+                }
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Error");
+                alert.setContentText("NO HAY PRODUCTOS EN EL CARRITO");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
