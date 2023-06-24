@@ -4,6 +4,7 @@ import byteshop.Busqueda.BusquedaViewController;
 import byteshop.Busqueda.Producto;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,6 +54,9 @@ public class TicketViewController implements Initializable {
     LocalDate fechaActual = LocalDate.now();
     String fecha = fechaActual + "";
     public String formaPago;
+    int idC = 0;
+    int idFormaDePago = 0;
+    java.sql.Date fechaDeCompra;
     
 
    @Override
@@ -63,12 +67,13 @@ public class TicketViewController implements Initializable {
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("precio"));
         
         clienteId(obtenerIdCliente());
+        ingresarVenta(idC, idFormaDePago, fechaDeCompra);
     }
 
     public void actualizarTicket(List<Producto> carrito) {
         data2 = FXCollections.observableArrayList(carrito);
         tableViewTicket.setItems(data2);
-        clienteId(obtenerIdCliente()); 
+        //clienteId(obtenerIdCliente()); 
     }
 
     public void setTotal(String total) {
@@ -81,6 +86,19 @@ public class TicketViewController implements Initializable {
         return numero;
     }
     
+    public void ingresarVenta(int idC, int idFormaPago, Date fecha){
+        try {
+            Connection conn = DriverManager.getConnection(url, usuario, contraseña);
+            PreparedStatement psInsert = conn.prepareStatement("INSERT INTO ventas (idCliente, fechaDeCompra, idFormaDePago) VALUES (?, ?, ?)");
+            psInsert.setInt(1, idC);
+            psInsert.setDate(2, fecha);
+            psInsert.setInt(3, idFormaPago);
+            psInsert.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error al conectar a la base de datos: " + ex.getMessage());
+        }
+    }
+    
      public void clienteId(int idP) {
         
         try {
@@ -89,20 +107,25 @@ public class TicketViewController implements Initializable {
             stmt.setInt(1, idP);
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
                 labelNombreUser.setText(rs.getString("c.nombreCliente"));
                 labelFormaPago.setText(rs.getString("fp.nombreFormaDePago"));
                 labelFecha.setText(fecha);
                 
                 // AGREGA LA VENTA  LA TABLA VENTAS CON SUS RESPECTIVOS DATOS
-                int idFormaDePago = rs.getInt("c.idFormaDePago");
-                java.sql.Date fechaDeCompra = new java.sql.Date(System.currentTimeMillis());
+                idC = idP;
+                idFormaDePago = rs.getInt("c.idFormaDePago");
+                fechaDeCompra = new java.sql.Date(System.currentTimeMillis());
+                
+                /*
                 PreparedStatement psInsert = conn.prepareStatement("INSERT INTO ventas (idCliente, fechaDeCompra, idFormaDePago) VALUES (?, ?, ?)");
                 psInsert.setInt(1, idP);
                 psInsert.setDate(2, fechaDeCompra);
                 psInsert.setInt(3, idFormaDePago);
                 psInsert.executeUpdate();
+                */
             } 
+            System.out.println(idC + "," + idFormaDePago + "," + fechaActual);
 
         } catch (SQLException ex) {
             System.out.println("Error al conectar a la base de datos: " + ex.getMessage());
